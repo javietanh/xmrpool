@@ -1,7 +1,7 @@
-  <md-content class="login" layout-align="center center">
+  <md-content class="login" layout-align="center center" style="padding: 30px">
   	<md-toolbar>
   		<div class="md-toolbar-tools">
-  			<h2 flex>Pool Admin Login</h2>
+  			<h2 flex>Admin Login</h2>
   			<span flex></span>
   		</div>
   	</md-toolbar>
@@ -12,7 +12,7 @@
        <div></div>
        <md-input-container class="md-icon-float md-block">
          <!-- Use floating label instead of placeholder -->
-         <label>Payment Address</label>
+         <label>Admin Username</label>
          <md-icon>person</md-icon>
          <input ng-model="admin.username" type="text" md-autofocus>
        </md-input-container>
@@ -31,9 +31,10 @@
      Remember me
    </md-checkbox>
    <span flex></span>
-   <p class="invalid">{{status}}</p>
-   <md-button class="md-raised md-primary" ng-click="login()">
+   
+   <md-button class="md-raised md-primary" ng-click="login()" style="width: 100px">
      Login
    </md-button>
+
  </md-dialog-actions>
 </md-content>

@@ -1,6 +1,13 @@
-<md-content flex>
-	<!-- <md-table-pagination md-limit="options.limit" md-limit-options="[10, 20, 30]" md-page="options.page" md-total="{{poolStats.global.totalPayments}}" md-on-paginate="loadPayments" md-page-select></md-table-pagination> -->
+<md-content>
+    <!-- <md-table-pagination md-limit="options.limit" md-limit-options="[10, 20, 30]" md-page="options.page" md-total="{{poolStats.global.totalPayments}}" md-on-paginate="loadPayments" md-page-select></md-table-pagination> -->
+    <md-toolbar class="md-table-toolbar md-default">
+        <div class="md-toolbar-tools">
+            <span>Workers</span>
+            <span flex></span>            
+        </div>
+    </md-toolbar>
 	<md-table-container>
+        <md-table-pagination md-page-select md-limit="options.limit" md-limit-options="[10, 20, 30]" md-page="options.page" md-total="{{ pool_workers.length }}" md-on-paginate="loadWorkers"></md-table-pagination>
 		<table md-table md-row-select ng-model="selected" md-progress="promise">
 			<thead md-head md-order="workersOrder">
 				<tr md-row>
@@ -16,7 +23,7 @@
 				</tr>
 			</thead>
 			<tbody md-body>
-				<tr md-row ng-repeat="worker in pool_workers | orderBy: workersOrder">
+				<tr md-row ng-repeat="worker in pool_workers | orderBy: workersOrder | limitTo: options.limit : (options.page-1) * options.limit">
 					<td md-cell>{{worker.hashRate | toHashRate}}</td>
 					<td md-cell>{{worker.address}}</td>
 					<td md-cell>{{worker.paid | toXMR}} XMR</td>
@@ -33,7 +40,7 @@
 					</td>
 				</tr>
 			</tbody>
-		</table>
-	</md-table-container>
-	<!-- <md-table-pagination md-limit="options.limit" md-limit-options="[10, 20, 30]" md-page="options.page" md-total="{{poolStats.global.totalPayments}}" md-on-paginate="loadPayments" md-page-select></md-table-pagination> -->
+        </table>
+        <md-table-pagination md-page-select md-limit="options.limit" md-limit-options="[10, 20, 30]" md-page="options.page" md-total="{{ pool_workers.length }}" md-on-paginate="loadWorkers"></md-table-pagination>
+	</md-table-container>	
 </md-content>

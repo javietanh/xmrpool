@@ -184,11 +184,11 @@
 					<table md-table md-row-select ng-model="minerStats[addr].table_selected" md-progress="minerStats[addr].promise" data-md-row-select="minerStats[addr].table_options.rowSelection" multiple="{{minerStats[addr].table_options.multiSelect}}">
 						<thead md-head>
 							<tr md-row>
-								<th md-column md-numeric><h2 class="md-subhead">№</h2></th>
+								<th md-column md-numeric><h2 class="md-subhead">No</h2></th>
                                 				<th md-column md-numeric><h2 class="md-subhead">Worker</h2></th>
                                 				<th md-column md-numeric><h2 class="md-subhead">Hash Rate</h2></th>
-                                				<th md-column md-numeric><h2 class="md-subhead">1 Hour Avg. Hash Rate</h2></th>
-                                				<th md-column md-numeric><h2 class="md-subhead">24 Hour Avg. Hash Rate</h2></th>
+                                				<th md-column md-numeric><h2 class="md-subhead">1 Hour</h2></th>
+                                				<th md-column md-numeric><h2 class="md-subhead">24 Hours</h2></th>
                                 				<th md-column md-numeric><h2 class="md-subhead">Total Hashes</h2></th>
                                 				<th md-column md-numeric><h2 class="md-subhead">Last Hash</h2></th>
 							</tr>
@@ -229,7 +229,7 @@
 	<md-card-actions layout="row" layout-align="end center" flex>
 		<form layout layout-align="center" layout-padding>
 			<div layout="row" flex>
-				<md-checkbox ng-model="miner.alarm" ng-change="setAlarm(addr, miner.alarm)"></md-checkbox>
+				<md-checkbox ng-model="miner.alarm" ng-change="setAlarm(addr, miner.alarm)" aria-label="."></md-checkbox>
 				<md-input-container flex class="md-icon-float md-block md-title">
 					<label>Hashrate Alarm</label>
 					<!-- below is the material icons -->

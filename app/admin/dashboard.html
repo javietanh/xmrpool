@@ -1,5 +1,5 @@
 <md-content>
-	<div layout="row">
+	<div layout="row" layout-xs="column">
 		<md-card ng-repeat="(type, stats) in pool_stats" flex>
 			<md-toolbar class="md-table-toolbar md-default">
 				<div class="md-toolbar-tools">
@@ -30,69 +30,69 @@
 					</md-list-item>
 				</md-card-content>
 			</md-card>
-		</div>
+	</div>
 
-		<md-card>
-			<md-toolbar class="md-table-toolbar md-default">
-				<div class="md-toolbar-tools">
-					<h1>Wallet</h1>
-				</div>
-			</md-toolbar>
-			<md-card-content>
-				<div flex layout="column" layout-md="row" layout-gt-md="row" class="text-center">
-					<div flex layout="column" layout-gt-xs="row">
-						<div flex>
-							<h4> Height<h2>{{ pool_wallet.height | number }}</h2></h4>
-						</div>
-						<div flex>
-							<h4> Unlocked<h2>{{ pool_wallet.unlocked | toXMR }} XMR</h2></h4>
-						</div>
-					</div>
-					<div flex layout="column" layout-gt-xs="row">
-						<div flex>
-							<h4> Balance<h2>{{ pool_wallet.balance | toXMR }} XMR</h2></h4>
-						</div>
-						<div flex>
-							<h4> Timestamp<h2>{{ pool_wallet.ts | date }}</h2></h4>
-						</div>
-					</div>
-				</div>
-			</md-card-content>
-		</md-card>
+    <md-card>
+        <md-toolbar class="md-table-toolbar md-default">
+            <div class="md-toolbar-tools">
+                <h1>Wallet</h1>
+            </div>
+        </md-toolbar>
+        <md-card-content>
+            <div flex layout="column" layout-md="row" layout-gt-md="row" class="text-center">
+                <div flex layout="column" layout-gt-xs="row">
+                    <div flex>
+                        <h4> Height<h2>{{ pool_wallet.height | number }}</h2></h4>
+                    </div>
+                    <div flex>
+                        <h4> Unlocked<h2>{{ pool_wallet.unlocked | toXMR }} XMR</h2></h4>
+                    </div>
+                </div>
+                <div flex layout="column" layout-gt-xs="row">
+                    <div flex>
+                        <h4> Balance<h2>{{ pool_wallet.balance | toXMR }} XMR</h2></h4>
+                    </div>
+                    <div flex>
+                        <h4> Timestamp<h2>{{ pool_wallet.ts | date }}</h2></h4>
+                    </div>
+                </div>
+            </div>
+        </md-card-content>
+    </md-card>
 
-		<md-card>
-			<md-card-content flex>
-				<md-content>
-					<md-table-container>
-						<table md-table md-row-select ng-model="selected" md-progress="promise">
-							<thead md-head>
-								<tr md-row>
-									<th md-column><h2 class="md-subhead">Height</h2></th>
-									<th md-column><h2 class="md-subhead">Unlocked</h2></th>
-									<th md-column><h2 class="md-subhead">Balanced</h2></th>
-									<th md-column><h2 class="md-subhead">Timestamp</h2></th>
-								</tr>
-							</thead>
-							<tbody md-body>
-								<tr md-row ng-repeat="history in pool_wallet_history">
-									<td md-cell><p class="md-body-2">{{history.height | number}}</p></td>
-									<td md-cell><p class="md-body-2">{{history.balance | toXMR }} XMR</p></td>
-									<td md-cell><p class="md-body-2">{{history.unlocked | toXMR }} XMR</p></td>
-									<td md-cell>
-										<h3 class="md-body-2" am-time-ago="history.ts"></h3>
-										<md-tooltip>
-											({{history.ts | date:'hh:mm:ss dd/MM/yy'}})
-										</md-tooltip>
-									</td>
-								</tr>
-							</tbody>
-						</table>
-					</md-table-container>
-				<!-- <md-table-pagination md-limit="options.limit" md-limit-options="[10, 20, 30]" md-page="options.page" md-total="{{poolStats.global.totalPayments}}" md-on-paginate="loadPayments" md-page-select></md-table-pagination> -->
-				</md-content>
-			</md-card-content>
-		</md-card>
-	</md-content>
+    <md-card>
+        <md-card-content>
+            <md-content>
+                <md-table-pagination md-page-select md-limit="options.limit" md-limit-options="[10, 20, 30]" md-page="options.page" md-total="{{ pool_wallet_history.length }}" md-on-paginate="loadHistory"></md-table-pagination>
+                <md-table-container>
+                    <table md-table md-row-select ng-model="selected" md-progress="promise">
+                        <thead md-head>
+                            <tr md-row>
+                                <th md-column><h2 class="md-subhead">Height</h2></th>
+                                <th md-column><h2 class="md-subhead">Unlocked</h2></th>
+                                <th md-column><h2 class="md-subhead">Balanced</h2></th>
+                                <th md-column><h2 class="md-subhead">Timestamp</h2></th>
+                            </tr>
+                        </thead>
+                        <tbody md-body>
+                            <tr md-row ng-repeat="history in pool_wallet_history | limitTo: options.limit : (options.page-1) * options.limit">
+                                <td md-cell><p class="md-body-2">{{history.height | number}}</p></td>
+                                <td md-cell><p class="md-body-2">{{history.balance | toXMR }} XMR</p></td>
+                                <td md-cell><p class="md-body-2">{{history.unlocked | toXMR }} XMR</p></td>
+                                <td md-cell>
+                                    <h3 class="md-body-2" am-time-ago="history.ts"></h3>
+                                    <md-tooltip>
+                                        ({{history.ts | date:'hh:mm:ss dd/MM/yy'}})
+                                    </md-tooltip>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </md-table-container>				
+            </md-content>
+        </md-card-content>
+    </md-card>
+</md-content>
 
 
 

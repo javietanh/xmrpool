@@ -6,7 +6,11 @@ app.controller('AdminPortsCtrl', function($scope, $location, $route, $mdDialog, 
 	var loadPorts = function() {
 		dataService.getData("/admin/ports", function(data) {
 			$scope.pool_ports = data;
-		});
+		}, function(err){
+            if(err.status == 403){
+                $location.path('#login');
+            }        
+        });
 	}
 
 	$scope.editPort = function (ev, port) {

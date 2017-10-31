@@ -15,17 +15,25 @@ html, body {
   min-width: 360px;
 }
 
-a {
-  transition: color .4s;
-  color: rgb(0, 130, 130); 
+.shr:link {text-decoration: none!important}
+.shr:visited {color:rgb(0,130,130)}
+.shr:hover {color:rgb(0,130,130)}
+.shr:active {
+    transition: color .3s!important;
+    color:rgb(0,130,130)   
 }
 
-a:link { text-decoration: none; },
-a:visited { color: rgb(255, 160, 0); } 
-a:hover   { color: rgb(255, 160, 0); }
+a {
+  transition: color .4s;
+  color:#EF6C00
+}
+
+a:link { text-decoration: none; }
+a:visited { color:#EF6C00 } 
+a:hover   { color:rgb(0,130,130) }
 a:active  {
   transition: color .3s;
-  color: rgb(204, 122, 0);
+  color: #EF6C00
 }
 
  .panel-subtitle {
@@ -36,7 +44,7 @@ a:active  {
  .footer {
 	 text-align: center;
 	 font-size: 90%;
-	 padding-bottom: 40px;
+	 padding-bottom: 10px;
  }
  
 /*** Material Styles ***/
@@ -72,7 +80,7 @@ md-toolbar {
 }
 
 .maintoolbar {
-  background-color: rgb(0, 130, 130); 
+  background-color: rgb(255, 160, 0);
   color: rgb(255, 255, 255);
  }
 
@@ -97,7 +105,7 @@ md-toolbar {
 }
 
 .luck {
-text-allign: right;
+text-align: right;
 padding: 0 0 0 56px
 }
 

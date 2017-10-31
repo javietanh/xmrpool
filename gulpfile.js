@@ -41,6 +41,8 @@ gulp.task('fontcss', function(){
 gulp.task('connect', function() {
   connect.server({
     root: 'build',
+    port: 3000,
+    https: true,
     livereload: true
   });
 });

@@ -4,13 +4,21 @@
 <!--[if IE 8]>         <html lang="en" ng-app="poolui" class="no-js lt-ie9" manifest="app.manifest"> <![endif]-->
 <!--[if gt IE 8]><!--> <html lang="en" ng-app="poolui" class="no-js" manifest="app.manifest"> <!--<![endif]-->
 <head>
-  <title>supportXMR.com - your pool for awesome Monero Mining!</title>
+  <title>XmrPools.Asia - Awesome Monero Mining!</title>
+  <!-- Global Site Tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-107277183-1"></script>
+  <script>
+   window.dataLayer = window.dataLayer || [];
+   function gtag(){dataLayer.push(arguments)};
+   gtag('js', new Date());
+   gtag('config', 'UA-107277183-1');
+  </script>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-  <meta name="description" content="Welcome to supportXMR.com! Your new home for awesome Monero Mining! Come and mine Monero with a pool that's not just miners... but friends! (+ we have worker stats, custom payout thresholds and mining to exchange)">
+  <meta name="description" content="Welcome to xmrpools.asia! Your new home for awesome Monero Mining! Come and mine Monero with a pool that's not just miners... but friends! (+ we have worker stats, custom payout thresholds and mining to exchange)">
   <meta name="keywords" content="monero, xmr, mining, pool, pplns, block, payments, payouts, reward, hash, hashrate, xmr-stak">
-  <meta name="google-site-verification" content="8fsduyK9_KF2zKQiMQL7i8Fp_JkyR8MTFqcBtT52QtI">
+  <meta name="google-site-verification" content="j2pZ_mgIZRElLc6s3tCJVosMkQHplio5km0WMf1QZGg">
   <!-- CSS -->
   <link rel="stylesheet" href="vendor/angular-material/angular-material.css">
   <link rel="stylesheet" href="vendor/n3-charts/build/LineChart.css">
@@ -21,9 +29,10 @@
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/font-awesome.min.css">
   <!-- Favicon -->
- <link href="assets/supportXMR.png" type="image/png" rel="icon">
+  <link href="assets/monero_xmr.png" type="image/png" rel="icon">
   <!-- CHAT -->
-  <script id="cid0020000137795747302" data-cfasync="false" async="" src="//st.chatango.com/js/gz/emb.js" style="width: 400px;height: 300px;">{"handle":"supportxmr","arch":"js","styles":{"a":"2C3742","b":100,"c":"FFFFFF","d":"FFFFFF","k":"2C3742","l":"2C3742","m":"2C3742","n":"FFFFFF","p":"10","q":"2C3742","r":100,"pos":"bl","cv":1,"cvfnt":"'Helvetica Neue', Helvetica, Arial, sans-serif, sans-serif","cvfntw":"bold","cvbg":"2C3742","cvfg":"e0e0e0","cvw":220,"cvh":30,"ticker":1,"fwtickm":1,"usricon":0}}</script>
+  <script id="cid0020000167491551961" data-cfasync="false" async src="//st.chatango.com/js/gz/emb.js" style="width: 200px;height: 300px;">{"handle":"xmrpools","arch":"js","styles":{"a":"0084ef","b":100,"c":"FFFFFF","d":"FFFFFF","k":"0084ef","l":"0084ef","m":"0084ef","n":"FFFFFF","p":"10","q":"0084ef","r":100,"usricon":0,"pos":"bl","cv":1,"cvbg":"2c3742","cvw":75,"cvh":30}}</script>
+  <!--base href="/"-->
 </head>
 <body ng-cloak layout="column" ng-controller="AppCtrl">
   <!--[if lt IE 7]>
@@ -33,8 +42,8 @@
       <div class="container" layout="row" flex>
         <md-sidenav md-is-locked-open="menuOpen" md-component-id="left" md-whiteframe="4" class="sidenav">
           <md-toolbar class="logo">
-			<span class="md-toolbar-tools" style="text-align: center; position: ">
-				<strong><span>support</span><span style="font-size: 140%; color: rgb(255, 153, 0); vertical-align: -23%;">XMR</span><span style="vertical-align: -31%;">.com </span></strong>
+			<span class="md-toolbar-tools" style="text-align: center">
+				<strong><span>Xmr</span><span style="font-size: 140%; color: rgb(255, 153, 0); vertical-align: -23%;">Pools</span><span style="vertical-align: -31%;">.asia </span></strong>
 			</span>
           </md-toolbar>
           <md-list>
@@ -95,30 +104,30 @@
           </md-list>
         </md-sidenav>
 
-        <md-content flex id="main">
-          <md-toolbar class="navbar md-whiteframe-2dp">
-            <div class="md-toolbar-tools maintoolbar" layout="row">
-              <md-button class="md-icon-button" type="button" ng-click="toggleSidenav()">
-                <md-icon md-font-set="material-icons">menu</md-icon>
-              </md-button>
-              <span class="flex text-center wrap">Network: <b class="nowrap">{{network.difficulty | difficultyToHashRate | toHashRate}}</b></a></span>
-              <span class="flex text-center wrap">Pool: <b class="nowrap">{{poolStats.global.hashRate | toHashRate}}</b></a></span>
-              <span class="flex text-center wrap"><a href="#/dashboard">You: <b class="nowrap">{{yourTotalHashRate | toHashRate}}</b></a></span>
-              <div>
-                <md-button class="md-raised md-accent" aria-label="Miner Login" ng-click="minerLogin($event)" ng-if="!isLoggedIn()">
-                  <md-icon class="login">settings</md-icon>
-                  <span class="setup-text">Options</span>
+        <md-content flex id="main">            
+            <md-toolbar class="navbar md-whiteframe-2dp">
+                <div class="md-toolbar-tools maintoolbar" layout="row">
+                <md-button class="md-icon-button" type="button" ng-click="toggleSidenav()">
+                    <md-icon md-font-set="material-icons">menu</md-icon>
                 </md-button>
-                <md-button class="md-fab md-mini md-warn" aria-label="Miner Login" ng-click="minerConsole($event)" ng-if="isLoggedIn()">
-                  <md-icon class="login">build</md-icon>
-                </md-button>
-              </div>
-            </div>
-          </md-toolbar>
-          <div id="content" ng-view flex></div>
-		<div class="footer">
-		powered by <strong><a href="https://github.com/Snipa22/nodejs-pool"><i class="fa fa-github"></i> nodejs-pool</a></strong> &amp; <strong><a href="https://github.com/mesh0000/poolui"><i class="fa fa-github"></i> poolui</a></strong></br> <span style="font-size: 90%">(mod by <b>miziel</b>)</span>
-		</div>
+                <span class="flex text-center wrap">Network: <b class="nowrap">{{network.difficulty | difficultyToHashRate | toHashRate}}</b></a></span>
+                <span class="flex text-center wrap">Pool: <b class="nowrap">{{poolStats.global.hashRate | toHashRate}}</b></a></span>
+                <span class="flex text-center wrap"><a href="#/dashboard" class="shr">You: <b class="nowrap">{{yourTotalHashRate | toHashRate}}</b></a></span>
+                <div>
+                    <md-button class="md-raised md-accent" aria-label="Miner Login" ng-click="minerLogin($event)" ng-if="!isLoggedIn()">
+                    <md-icon class="login">settings</md-icon>
+                    <span class="setup-text">Options</span>
+                    </md-button>
+                    <md-button class="md-fab md-mini md-warn" aria-label="Miner Login" ng-click="minerConsole($event)" ng-if="isLoggedIn()">
+                    <md-icon class="login">build</md-icon>
+                    </md-button>
+                </div>
+                </div>
+            </md-toolbar>
+            <div id="content" ng-view flex></div>
+            <div class="footer">
+                <strong><a href="https://github.com/Snipa22/nodejs-pool"><i class="fa fa-github"></i> nodejs-pool</a></strong> - <strong><a href="https://github.com/miziel/poolui"><i class="fa fa-github"></i> poolui</a></strong></br> <span style="font-size: 90%"></span>
+            </div>            
         </md-content>
       </div>
       <!-- Scripts -->
@@ -156,6 +165,6 @@
       <script src="user/help/getting_started.js"></script>
       <script src="user/help/portsmodal.js"></script>
       <script src="user/help/config_generator.js"></script>
-      <script src="user/help/faq.js"></script>
+      <script src="user/help/faq.js"></script>      
     </body>
     </html>

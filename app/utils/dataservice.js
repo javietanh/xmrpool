@@ -61,19 +61,20 @@ angular.module('utils.xhr', [])
           this.logout();
           sessionLock=false;
         }
-      }
-
-      this.logout = function() {
-      // invalidate existing token
-      $http.get(apiURL+"/authed/tokenRefresh")
-      .then(function (data) { 
-        /* Do nothing */ 
-      }, function (err) {
-        console.log("debug", err);
-      });
-      delete storage.authToken;
-      delete sessStorage.authToken;
-      delete sessStorage.token;
-      // invalidate token on server todo
     }
+
+    this.logout = function() {
+        // invalidate existing token
+        $http.get(apiURL+"/authed/tokenRefresh")
+        .then(function (data) { 
+            /* Do nothing */ 
+        }, function (err) {
+            console.log("debug", err);
+        });
+        delete storage.authToken;
+        delete sessStorage.authToken;
+        delete sessStorage.token;
+        // invalidate token on server todo
+    }
+    
   })

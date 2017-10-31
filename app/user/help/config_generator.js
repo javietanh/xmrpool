@@ -17,10 +17,10 @@ app.controller('ConfigGeneratorCtrl', function($scope) {
 	$scope.example_attr = {
 		'with_mail': false,
 		'with_worker_id': false,
-    'with_pool_address' : 'pool.supportxmr.com',
-    'with_custom_wallet': '43QGgipcHvNLBX3nunZLwVQpF6VbobmGcQKzXzQ5xMfJgzfRBzfXcJHX1tUHcKPm9bcjubrzKqTm69JbQSL4B3f6E3mNCbU',
-    'with_custom_worker': 'MyWorker',
-    'with_custom_email': 'me@email.com',
+    'with_pool_address' : 'xmrpools.asia',
+    'with_custom_wallet': '48SN3ietpHZSyiEMwHGPWVcSfm5aEZ6SEdEXEjxsJexo8nJiTrZ3SBthicEmo1CS7CHNMondB4d5G2nANqt1pGBMGFuF7v2',
+    'with_custom_worker': 'miner',
+    'with_custom_email': 'email@gmail.com',
     'with_custom_port': '5555',    
 	}
 

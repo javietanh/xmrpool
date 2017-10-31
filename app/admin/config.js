@@ -6,7 +6,11 @@ app.controller('AdminConfigCtrl', function($scope, $location, $route, $mdDialog,
 	var loadConfig = function () {
 		dataService.getData("/admin/config", function(data) {
 			$scope.pool_configs = data;
-		});
+		}, function(err){
+            if(err.status == 403){
+                $location.path('#login');
+            }        
+        });
 	}
 
 	$scope.editConfig = function (ev, config) {

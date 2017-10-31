@@ -1,7 +1,7 @@
 'use strict';
 
 // Declare app level module which depends on views, and components
-var app = angular.module('poolui', [
+var app = angular.module('poolui', [	
 	'pool.globals',
 	'ngRoute',
 	'ngMaterial',
@@ -15,11 +15,18 @@ var app = angular.module('poolui', [
 	'n3-line-chart',
 	'angular-page-visibility'
 	]).config(['$locationProvider', '$routeProvider', '$mdThemingProvider', function($locationProvider, $routeProvider, $mdThemingProvider) {
-		$locationProvider.hashPrefix('')
-		;	
-		$mdThemingProvider.theme('default')
-		.primaryPalette('grey')
+        $locationProvider
+        .html5Mode(false)
+        .hashPrefix('');
+
+        $mdThemingProvider
+        .theme('default')
+        .primaryPalette('blue-grey')
 		.accentPalette('light-blue');
+		/*.primaryPalette('indigo')
+        .accentPalette('pink')
+        .warnPalette('red')
+        .backgroundPalette('blue-grey');*/
 
 		$routeProvider
 		.when('/home', {
@@ -68,14 +75,14 @@ var app = angular.module('poolui', [
 			activetab: 'help'
 		})
 		.when('/help/config_generator', {
-                        templateUrl: 'user/help/config_generator.html',
-                        controller: 'ConfigGeneratorCtrl',
-                        activetab: 'help'
-                });
+			templateUrl: 'user/help/config_generator.html',
+			controller: 'ConfigGeneratorCtrl',
+			activetab: 'help'
+		});
 
 		$routeProvider.otherwise({redirectTo: '/home'});
 
-	}]);
+    }]);        
 
 	app.controller('AppCtrl', function($scope, $rootScope, $location, $route, $routeParams, $anchorScroll, $window, $interval, $mdDialog, dataService, timerService, addressService, $mdSidenav, $mdMedia, $localStorage, ngAudio, GLOBALS){
 		$scope.GLOBALS = GLOBALS;
@@ -87,8 +94,15 @@ var app = angular.module('poolui', [
         $scope.poolHashrateChart = {}; // hashrate history
         $scope.poolMinersChart = {}; // miners history
 		$scope.addrStats = {}; // All tracked addresses
-		$scope.lastBlock = {};
-		
+        $scope.lastBlock = {};
+        
+        var forceSSL = function () {
+            if ($location.protocol() !== 'https') {
+                $window.location.href = $location.absUrl().replace('http', 'https');
+            }
+        };
+        forceSSL();
+
 		// for miner tracking
 		$scope.yourTotalHashRate = 0;
 
