@@ -1,5 +1,8 @@
 <md-content>
-    <!-- <md-table-pagination md-limit="options.limit" md-limit-options="[10, 20, 30]" md-page="options.page" md-total="{{poolStats.global.totalPayments}}" md-on-paginate="loadPayments" md-page-select></md-table-pagination> -->
+    <!-- woker details -->
+
+    <!-- end woker details -->
+
     <md-toolbar class="md-table-toolbar md-default">
         <div class="md-toolbar-tools">
             <span>Workers</span>
@@ -7,10 +10,10 @@
         </div>
     </md-toolbar>
 	<md-table-container>
-        <md-table-pagination md-page-select md-limit="options.limit" md-limit-options="[10, 20, 30]" md-page="options.page" md-total="{{ pool_workers.length }}" md-on-paginate="loadWorkers"></md-table-pagination>
+        <md-table-pagination md-page-select md-limit="options.limit" md-limit-options="[10, 20, 30, 50, 100]" md-page="options.page" md-total="{{ pool_workers.length }}" md-on-paginate="loadWorkers"></md-table-pagination>
 		<table md-table md-row-select ng-model="selected" md-progress="promise">
 			<thead md-head md-order="workersOrder">
-				<tr md-row>
+				<tr md-row>                    
 					<th md-column md-numeric md-order-by="hashRate"><h2 class="md-subhead">Hashrate</h2></th>
 					<th md-column><h2 class="md-subhead">Address</h2></th>
 					<th md-column md-numeric md-order-by="paid"><h2 class="md-subhead">Paid</h2></th>
@@ -23,9 +26,9 @@
 				</tr>
 			</thead>
 			<tbody md-body>
-				<tr md-row ng-repeat="worker in pool_workers | orderBy: workersOrder | limitTo: options.limit : (options.page-1) * options.limit">
+				<tr md-row md-select="worker" md-select-id="address" ng-repeat="worker in pool_workers | orderBy: workersOrder | limitTo: options.limit : (options.page-1) * options.limit">
 					<td md-cell>{{worker.hashRate | toHashRate}}</td>
-					<td md-cell>{{worker.address}}</td>
+					<td md-cell class="truncate">{{worker.address}}</td>
 					<td md-cell>{{worker.paid | toXMR}} XMR</td>
 					<td md-cell>{{worker.due | toXMR }} XMR</td>
 					<td md-cell>{{worker.totalHashes | number }}</td>
@@ -41,6 +44,6 @@
 				</tr>
 			</tbody>
         </table>
-        <md-table-pagination md-page-select md-limit="options.limit" md-limit-options="[10, 20, 30]" md-page="options.page" md-total="{{ pool_workers.length }}" md-on-paginate="loadWorkers"></md-table-pagination>
+        <md-table-pagination md-page-select md-limit="options.limit" md-limit-options="[10, 20, 30, 50, 100]" md-page="options.page" md-total="{{ pool_workers.length }}" md-on-paginate="loadWorkers"></md-table-pagination>
 	</md-table-container>	
 </md-content>

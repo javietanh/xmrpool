@@ -13,7 +13,8 @@ var app = angular.module('poolui', [
 	'utils.services',
 	'utils.xhr',
 	'n3-line-chart',
-	'angular-page-visibility'
+    'angular-page-visibility',
+    'angularjs-gauge'
 	]).config(['$locationProvider', '$routeProvider', '$mdThemingProvider', function($locationProvider, $routeProvider, $mdThemingProvider) {
         $locationProvider
         .html5Mode(false)

@@ -26,21 +26,16 @@
             <input ng-model="user.password" name="password" type="password" placeholder="email part of miner identifier">
           </md-input-container>
         </div>
-      </form>
-      <div>
-      	<p><b>NOTE: you don't need to log in to track your stats. Just put your wallet address in the box at the bottom of the dashboard.</b></p>
-      	<p><b>You only need to log in if you want to increase your payout threshold (default is 0.3 XMR).</b></p>
-      	<p><b>To register, change your miner's password field to "MinerName:your@email.com" and submit a few shares. Then, use your email as password.</b></p>
-      </div>
+      </form>      
     </md-dialog-content>
 
     <md-dialog-actions layout="row">
-      <md-checkbox class="md-primary" ng-model="remember">
+      <md-checkbox class="md-accent" ng-model="remember">
         Remember me
       </md-checkbox>
       <span flex></span>
       <p class="invalid">{{status}}</p>
-      <md-button class="md-raised md-primary" ng-click="login()">
+      <md-button class="md-raised md-accent" style="width: 100px" ng-click="login()">
         Login
       </md-button>
     </md-dialog-actions>

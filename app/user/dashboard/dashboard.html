@@ -109,70 +109,94 @@
 	</div>
 </div>
 
-<form layout layout-align="center" layout-padding>
-	<div layout="row" flex>
-		<md-input-container flex class="md-icon-float md-block md-title">
-			<label>Enter Payment Address</label>
-			<!-- below is the material icons -->
-			<md-icon class="material-icons">account_balance_wallet</md-icon>
-			<input type="text" ng-model="paymentAddress">
-		</md-input-container>
-		<div>
-			<md-button class="md-raised md-primary" ng-click="addAddress()">
-				<md-icon md-font-set="material-icons">add</md-icon>
-				Track Live Stats
-			</md-button>
-		</div>
-	</div>  
-</form>
+<div layout="column" flex-lg="100" flex-gt-lg="100">
+    <md-card>
+        <md-toolbar class="md-table-toolbar md-default">
+            <div class="md-toolbar-tools">
+                <span class="md-title">Track Live Stats</span>
+            </div>
+        </md-toolbar>
+        <md-card-content>
+            <form layout layout-align="center">
+                <div layout="row" flex>
+                    <md-input-container flex class="md-icon-float md-block md-title">
+                        <label>Mining Address</label>
+                        <md-icon class="material-icons" style="color: rgb(255, 160, 0);">account_balance_wallet</md-icon>
+                        <input type="text" ng-model="paymentAddress">
+                    </md-input-container>
+                    <span>
+                        <md-button class="md-fab md-mini" ng-click="addAddress()">
+                            <md-icon md-font-set="material-icons">add</md-icon>				
+                        </md-button>
+                    </span>
+                </div>  
+            </form>
+        </md-card-content>
+    </md-card>
+</div>
 
-<div layout-md="column" layout-sm="column" layout-xs="column" layout="row" flex ng-repeat="(addr,miner) in addrStats">
+<div style="padding-top: 3px"></div>
+
+<div layout="column" flex-lg="100" flex-gt-lg="100" ng-repeat="(addr,miner) in addrStats">
 	<md-card flex>
-		<md-toolbar class="md-accent">
-			<div class="md-toolbar-tools">
-				<md-input-container flex="60" class="md-icon-float md-block md-body-1 hide-error-msg">
-					<label>Name your Miner Group</label>
-					<!-- below is the material icons -->
-					<md-icon class="material-icons">account_balance</md-icon>
-					<input type="text" ng-model="miner.name">
-					<md-tooltip>
-						{{addr}}
-					</md-tooltip>
-				</md-input-container>
-				<span class="md-caption">
-					( Last Hash : <span am-time-ago="miner.lastHash * 1000">Never</span> )
-					<md-tooltip>
-						{{miner.lastHash*1000 | date:'HH:mm:ss dd/MM/yy'}}
-					</md-tooltip>
-				</span>
-				<span flex></span>
+        <md-toolbar class="md-table-toolbar md-default">
+            <div class="md-toolbar-tools">
+                <md-icon class="material-icons" style="color: rgb(255, 160, 0);">memory</md-icon>
+                <label class="md-title truncate" style="width: 90%!important; padding-left: 5px; font-size: 16px; font-weight: bolder">{{ addr }}</label>
+                <md-tooltip>
+                    ( Last Hash : <span am-time-ago="miner.lastHash * 1000">Never</span> ) {{ miner.lastHash*1000 | date:'HH:mm:ss dd/MM/yy' }}
+                </md-tooltip>
+                <span flex></span>
 				<span>
 					<md-button class="md-fab md-mini" ng-click="deleteAddress(addr, $event)">
-						<md-icon md-font-set="material-icons">clear</md-icon>
+                        <md-icon md-font-set="material-icons">clear</md-icon>
+                        <md-tooltip>Remove</md-tooltip>
 					</md-button>
 				</span>
-			</div>
-		</md-toolbar>
-		<md-card-content>
-			<div flex layout="column" layout-md="row" layout-gt-md="row" class="text-center">
-				<div flex layout="column" layout-gt-xs="row">
-					<div flex>
-						<h4> Hash Rate (24h Avg)<h2>{{miner.hash | toHashRate}} ({{minerStats[addr].dataset['global'].avghstfhour | toHashRate}})</h2></h4>
-					</div>
-					<div flex>
-						<h4> Total Hashes<h2>{{miner.totalHashes | number}}</h2></h4>
-					</div>
-				</div>
-				<div flex layout="column" layout-gt-xs="row">
-					<div flex>
-						<h4> Total Due<h2>{{miner.amtDue | toXMR | number:10}} XMR</h2></h4>
-					</div>
-					<div flex>
-						<h4> Total Paid<h2>{{miner.amtPaid | toXMR | number:10}} XMR</h2></h4>
-					</div>
-				</div>
-			</div>
-		</md-card-content>
+            </div>
+        </md-toolbar>	
+
+        <md-card-content>
+            <div layout-xs="column" layout-sm="column" layout="row" flex>
+                <div layout-xs="row" layout-sm="row" layout="column" flex>
+                    <md-list flex>
+                        <md-list-item>
+                            <p style="font-weight: bold">Hash Rate (24h Avg)</p>
+                            <p class="text-right valid">{{miner.hash | toHashRate}} ({{minerStats[addr].dataset['global'].avghstfhour | toHashRate}})</p>
+                        </md-list-item>
+                        <md-list-item>
+                            <p style="font-weight: bold">Total Hashes</p>
+                            <p class="text-right valid">{{miner.totalHashes | number}}</p>
+                        </md-list-item>                        
+                    </md-list>
+                </div>
+                <div layout-xs="row" layout-sm="row" layout="column" flex>
+                    <md-list flex>
+                        <md-list-item>
+                            <p style="font-weight: bold">Total Due</p>
+                            <p class="text-right invalid">{{miner.amtDue | toXMR | number:10}} XMR</p>
+                        </md-list-item>
+                        <md-list-item>
+                            <p style="font-weight: bold">Total Paid</p>
+                            <p class="text-right valid">{{miner.amtPaid | toXMR | number:10}} XMR</p>
+                        </md-list-item>
+                    </md-list>
+                </div>  
+                <div layout-xs="row" layout-sm="row" layout="column" flex>
+                    <md-list flex>
+                        <md-list-item>
+                            <p style="font-weight: bold">Valid Shares</p>
+                            <p class="valid text-right">{{miner.validShares | number}}</p>
+                        </md-list-item>
+                        <md-list-item>
+                            <p style="font-weight: bold">Invalid Shares</p>
+                            <p class="text-right invalid">{{miner.invalidShares | number}}</p>
+                        </md-list-item>
+                    </md-list>
+                </div>
+            </div>
+        </md-card-content>	
+
 		<md-card-content layout="column">
 			<div class="chartcontainer" ng-if="minerStats[addr].dataset !== {}" flex>
 				<linechart data="minerStats[addr].dataset" options="minerStats[addr].options"></linechart>
@@ -185,12 +209,12 @@
 						<thead md-head>
 							<tr md-row>
 								<th md-column md-numeric><h2 class="md-subhead">No</h2></th>
-                                				<th md-column md-numeric><h2 class="md-subhead">Worker</h2></th>
-                                				<th md-column md-numeric><h2 class="md-subhead">Hash Rate</h2></th>
-                                				<th md-column md-numeric><h2 class="md-subhead">1 Hour</h2></th>
-                                				<th md-column md-numeric><h2 class="md-subhead">24 Hours</h2></th>
-                                				<th md-column md-numeric><h2 class="md-subhead">Total Hashes</h2></th>
-                                				<th md-column md-numeric><h2 class="md-subhead">Last Hash</h2></th>
+                                <th md-column md-numeric><h2 class="md-subhead">Worker</h2></th>
+                                <th md-column md-numeric><h2 class="md-subhead">Hash Rate</h2></th>
+                                <th md-column md-numeric><h2 class="md-subhead">1 Hour</h2></th>
+                                <th md-column md-numeric><h2 class="md-subhead">24 Hours</h2></th>
+                                <th md-column md-numeric><h2 class="md-subhead">Total Hashes</h2></th>
+                                <th md-column md-numeric><h2 class="md-subhead">Last Hash</h2></th>
 							</tr>
 						</thead>
 						<tbody md-body>
@@ -199,7 +223,7 @@
 								<td md-cell><p class="md-body-2">{{id}}</p></td>
 								<td md-cell><p class="md-body-2">{{minerStats[addr].dataset[id][0].hs | toHashRate}}</p></td>
 								<td md-cell><p class="md-body-2">{{minerStats[addr].dataset[id].avghshour | toHashRate}}</p></td>
-                                                                <td md-cell><p class="md-body-2">{{minerStats[addr].dataset[id].avghstfhour | toHashRate}}</p></td>
+                                <td md-cell><p class="md-body-2">{{minerStats[addr].dataset[id].avghstfhour | toHashRate}}</p></td>
 								<td md-cell><p class="md-body-2">{{addrStats[addr].workerStats[id].totalHash | number}}</p></td>
 								<td md-cell><span class="md-body-2" am-time-ago="minerStats[addr].dataset[id][0].ts"></span>
 									<md-tooltip>
@@ -211,21 +235,9 @@
 					</table>
 				</md-table-container>
 			</div>
-		</md-card-content>
-		<md-card-content>
-			<div flex layout="column" layout-md="row" layout-gt-md="row" class="text-right">
-				<div flex layout="column" layout-gt-xs="row">
-					<div flex>
-						
-					</div>
-					<div flex>
-						<h3> Valid Shares<h2>{{miner.validShares | number}} <md-icon class="valid">check</md-icon></h2></h3>
-						<h3> Invalid Shares<h2>{{miner.invalidShares | number}} <md-icon class="invalid">clear</md-icon></h2></h3>
-					</div>
-				</div>
-			</div>
-		</md-card-content>
-	</md-card-content>
+		</md-card-content>		
+    </md-card-content>
+    
 	<md-card-actions layout="row" layout-align="end center" flex>
 		<form layout layout-align="center" layout-padding>
 			<div layout="row" flex>
@@ -234,7 +246,7 @@
 					<label>Hashrate Alarm</label>
 					<!-- below is the material icons -->
 					<input type="text" ng-model="miner.alarmLimit">
-					<md-icon class="material-icons">alarm</md-icon>
+					<md-icon class="material-icons" style="color: rgb(255, 160, 0);">alarm</md-icon>
 				</md-input-container>
 			</div>  
 		</form>

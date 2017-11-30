@@ -17,6 +17,7 @@
     "start": "gulp"
   },
   "dependencies": {
+    "angularjs-gauge": "^2.2.0",
     "font-awesome": "^4.7.0",
     "n3-charts": "^2.0.28",
     "randomcolor": "^0.4.4"

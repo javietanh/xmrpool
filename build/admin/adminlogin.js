@@ -11,7 +11,7 @@ app.controller('AdminLoginCtrl', function($scope, $location, $route, $mdToast, d
 			if (data.success){
 				data.remember  = $scope.remember;
 				dataService.setAuthToken(data);
-				$location.path('#/dashboard');
+				$location.path('#dashboard');
 			} else {
 				// $mdDialog.hide(false);
 			}
@@ -30,10 +30,11 @@ app.controller('AdminLoginCtrl', function($scope, $location, $route, $mdToast, d
 	}
 
 	if(dataService.isLoggedIn()) {
+        console.log("run checking.............");
         // validity the admin token (allow access on admin)
         dataService.getData("/admin/wallet", 
             function(data) {
-                $location.path('/dashboard');
+                $location.path('#dashboard');
             }, 
             function(err){
                 if(err.status == 403){

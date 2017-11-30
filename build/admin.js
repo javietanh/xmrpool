@@ -51,21 +51,22 @@ var app = angular.module('pooladmin', [
 
     }]);
     
-app.run(['$rootScope', '$location', function($rootScope, $location){
-    $rootScope.$on('$routeChangeStart', function(event){
+app.run(['$rootScope', '$location', 'dataService', function($rootScope, $location, dataService){
+    /*$rootScope.$on('$routeChangeStart', function(event){
         // call api behide firewall to test the authorization.
         dataService.getData("/admin/wallet", 
             function(data) {
+                console.log(data);
             }, 
             function(err){
                 if(err.status == 403){ 
                     event.preventDefault();               
                     // clear local storage and move to login.
-                    dataService.logout();
+                    //dataService.logout();
                     $location.path('#login');               
             }
         });
-    });
+    });*/
 }]);
 
 app.controller('AppCtrl', function($scope, $window, $route, $location, $interval, dataService, $localStorage, GLOBALS) {

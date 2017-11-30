@@ -68,6 +68,7 @@ gulp.task('vendor', function() {
     'node_modules/**/LineChart.js',
     'node_modules/**/LineChart.css',
     'node_modules/**/randomColor.js',
+    'node_modules/**/angularjs-gauge.min.js',
     'app/vendor/**/lodash.js',
     'app/vendor/**/page_visibility.js'
     ])

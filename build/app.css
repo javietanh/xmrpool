@@ -15,12 +15,19 @@ html, body {
   min-width: 360px;
 }
 
-.shr:link {text-decoration: none!important}
-.shr:visited {color:rgb(0,130,130)}
+ul.news{
+  list-style: circle
+}
+ul.news li{
+  line-height: 26px
+}
+
+.shr:link { text-decoration: none!important }
+.shr:visited {color:rgb(235,235,235)}
 .shr:hover {color:rgb(0,130,130)}
 .shr:active {
     transition: color .3s!important;
-    color:rgb(0,130,130)   
+    color:rgb(235,235,235) 
 }
 
 a {

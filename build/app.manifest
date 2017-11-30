@@ -29,12 +29,38 @@ assets/favicon.ico
 assets/logo.png
 assets/monero_xmr.png
 assets/supportXMR.png
+assets/twitter_logo.svg
+poolstatus/README.md
+poolstatus/bg.jpg
+poolstatus/blocktable.html
+poolstatus/blocktable2.html
+poolstatus/blocktable3.html
+poolstatus/blocktable4.html
+poolstatus/blocktable5.html
+poolstatus/index.html
+poolstatus/jquery-3.1.1.min.js
+poolstatus/monero.png
+poolstatus/poolblock.css
+poolstatus/poolblock.js
+poolstatus/poolblock2.js
+poolstatus/poolblock3.js
+poolstatus/poolblock4.js
+poolstatus/poolblock5.js
+poolstatus/script.css
+poolstatus/script.js
+poolstatus/wallet_n_pool.js
 utils/dataservice.js
 utils/directives.js
 utils/services.js
 utils/strings.js
 assets/css/font-awesome.css
 assets/css/font-awesome.min.css
+assets/fonts/FontAwesome.otf
+assets/fonts/fontawesome-webfont.eot
+assets/fonts/fontawesome-webfont.svg
+assets/fonts/fontawesome-webfont.ttf
+assets/fonts/fontawesome-webfont.woff
+assets/fonts/fontawesome-webfont.woff2
 user/blocks/blocks.html
 user/blocks/blocks.js
 user/dashboard/dashboard.html
@@ -60,10 +86,10 @@ user/home/login.html
 user/home/login.js
 user/network/network.html
 user/network/network.js
-user/ports/ports.html
-user/ports/ports.js
 user/payments/payments.html
 user/payments/payments.js
+user/ports/ports.html
+user/ports/ports.js
 vendor/angular/angular.js
 vendor/angular-animate/angular-animate.js
 vendor/angular-aria/angular-aria.js
@@ -76,6 +102,12 @@ vendor/lodash/lodash.js
 vendor/moment/moment.js
 vendor/ngstorage/ngStorage.js
 vendor/randomcolor/randomColor.js
+assets/fonts/fonts/FontAwesome.otf
+assets/fonts/fonts/fontawesome-webfont.eot
+assets/fonts/fonts/fontawesome-webfont.svg
+assets/fonts/fonts/fontawesome-webfont.ttf
+assets/fonts/fonts/fontawesome-webfont.woff
+assets/fonts/fonts/fontawesome-webfont.woff2
 vendor/angular-audio/app/angular.audio.js
 vendor/angular-audio/lib/angular.js
 vendor/angular-chart.js/dist/angular-chart.js
@@ -83,7 +115,7 @@ vendor/angular-material-data-table/dist/md-data-table.css
 vendor/angular-material-data-table/dist/md-data-table.js
 vendor/angular_page_visibility/dist/page_visibility.js
 vendor/angular_page_visibility/js/page_visibility.js
-vendor/chart.js/dist/chart.js
+vendor/angularjs-gauge/dist/angularjs-gauge.min.js
 vendor/d3/src/d3.js
 vendor/jquery/dist/jquery.js
 vendor/lodash/dist/lodash.js
@@ -98,4 +130,4 @@ NETWORK:
 SETTINGS:
 prefer-online
 
-# hash: 315dc5f248c8ca47fac457040109a32db04ae2c42d5da61291f3c68499bc5b6c
+# hash: 5e8a97f0d00514c4c472fe58e2fbe7f337ace21ea2abb19df89858c29971cf84
