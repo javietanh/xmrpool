@@ -6,10 +6,14 @@ var app = angular.module('pooladmin', [
 	'ngRoute',
 	'ngMaterial',
 	'md.data.table',
-	'ngStorage',
-	'angularMoment',
+    'ngStorage',
+    'ngAudio',
+    'angularMoment',
+    'angular-page-visibility',
+    'n3-line-chart',
 	'utils.xhr',
-	'utils.strings'	
+    'utils.strings',
+    'utils.services'
 ]).config(['$locationProvider', '$routeProvider', '$mdThemingProvider', function($locationProvider, $routeProvider, $mdThemingProvider, $mdIconProvider) {	
 	$locationProvider.hashPrefix('');
 	
@@ -51,38 +55,30 @@ var app = angular.module('pooladmin', [
 
     }]);
     
-app.run(['$rootScope', '$location', 'dataService', function($rootScope, $location, dataService){
-    /*$rootScope.$on('$routeChangeStart', function(event){
-        // call api behide firewall to test the authorization.
+app.run(['$rootScope', '$location', 'dataService', function($rootScope, $location, dataService, $localStorage, $sessionStorage){
+    $rootScope.$on('$routeChangeStart', function(event){        
         dataService.getData("/admin/wallet", 
-            function(data) {
-                console.log(data);
-            }, 
+            function(data) { }, 
             function(err){
-                if(err.status == 403){ 
-                    event.preventDefault();               
-                    // clear local storage and move to login.
-                    //dataService.logout();
-                    $location.path('#login');               
+                if(err.status == 403) {                     
+                    dataService.deleteStorage();                    
+                    $location.path('/login').search({ permission: 'denied'});
+                }
             }
-        });
-    });*/
+        );
+    });
 }]);
 
-app.controller('AppCtrl', function($scope, $window, $route, $location, $interval, dataService, $localStorage, GLOBALS) {
-    $scope.GLOBALS = GLOBALS;	        
+app.controller('AppCtrl', function($scope, $window, $route, $location, $interval, dataService, timerService, addressService, $localStorage, GLOBALS) {
+    $scope.GLOBALS = GLOBALS;	  
+    $scope.addrStats = {}; // All tracked addresses      
     var forceSSL = function () {
         if ($location.protocol() !== 'https') {
             $window.location.href = $location.absUrl().replace('http', 'https');
         }
     };
     forceSSL();
-	var loginCheck = function (){
-		if(!dataService.isLoggedIn()){
-			$location.path('#login');
-		}
-    }
-    
+	
 	$scope.isLoggedIn = function () {
 		return dataService.isLoggedIn();
 	}
@@ -92,4 +88,18 @@ app.controller('AppCtrl', function($scope, $window, $route, $location, $interval
 		$location.path('#login');
     }
     
+    var loadOnce = function () {
+        dataService.getData("/config", function(data){
+            $scope.config = data;
+        });
+    }
+
+    loadOnce();
+
+    timerService.startTimer(GLOBALS.api_refresh_interval);
+
+    // Start address tracking servuce after starting timer, only one callback supported at a time
+    addressService.start(function(addrStats) {
+        $scope.addrStats = addrStats;        
+    });
 });

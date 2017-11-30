@@ -16,7 +16,7 @@ app.controller('DashboardCtrl', function($scope , $route, $mdDialog, $pageVisibi
 	
 	$scope.addAddress = function (){
 		if ($scope.paymentAddress){
-			addressService.trackAddress($scope.paymentAddress);
+            addressService.trackAddress($scope.paymentAddress);            
 			$scope.paymentAddress = "";
 		}
 	};

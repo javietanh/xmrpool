@@ -1,7 +1,8 @@
 'use strict';
 
 app.controller('AdminLoginCtrl', function($scope, $location, $route, $mdToast, dataService) {
-	$scope.admin = {
+
+    $scope.admin = {
 		username:"",
 		password:""
     }
@@ -9,11 +10,16 @@ app.controller('AdminLoginCtrl', function($scope, $location, $route, $mdToast, d
 	$scope.login = function () {
 		dataService.postData("/authenticate", $scope.admin, function(data){	
 			if (data.success){
-				data.remember  = $scope.remember;
+				data.remember = $scope.remember;
 				dataService.setAuthToken(data);
-				$location.path('#dashboard');
+				$location.path('/dashboard').search({});
 			} else {
-				// $mdDialog.hide(false);
+				$mdToast.show(
+                    $mdToast.simple()
+                      .textContent("Please check your login details")
+                      .position('top right')                       
+                      .hideDelay(5000)
+                );
 			}
 		}, function(error){            
             $mdToast.show(
@@ -23,29 +29,21 @@ app.controller('AdminLoginCtrl', function($scope, $location, $route, $mdToast, d
                   .hideDelay(5000)
             );
 		});
-	}
+    }
+    
+    // checking for permission denied.
+    var urlParams = $location.search();
+    if(urlParams.permission == "denied") {
+        $mdToast.show(
+            $mdToast.simple()
+              .textContent("You don't have permission to access this area!")
+              .position('top right')                       
+              .hideDelay(5000)
+        );
+    }
 
-	var isLoggedIn = function () {
-		if(dataService.isLoggedIn == false) ;
-	}
-
-	if(dataService.isLoggedIn()) {
-        console.log("run checking.............");
-        // validity the admin token (allow access on admin)
-        dataService.getData("/admin/wallet", 
-            function(data) {
-                $location.path('#dashboard');
-            }, 
-            function(err){
-                if(err.status == 403){
-                    $mdToast.show(
-                        $mdToast.simple()
-                          .textContent("You don't have permission to access this area!")
-                          .position('top right')                       
-                          .hideDelay(5000)
-                    );
-                    dataService.logout();                    
-                }   
-        });		
-	};
+    // if the user already login.
+    if(dataService.isLoggedIn()) {
+        $location.path('/dashboard').search({});
+    }
 });

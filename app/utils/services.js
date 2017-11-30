@@ -53,7 +53,7 @@ angular.module('utils.services', [])
   }
 
   var track = function(){
-    _.each(addrStats, function(addr, key) {
+    _.each(addrStats, function(addr, key) {        
       // Get Miner stats
       dataService.getData("/miner/"+key+"/stats", function(data){
         addrStats[key] = Object.assign(addr, data);

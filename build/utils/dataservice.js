@@ -63,6 +63,16 @@ angular.module('utils.xhr', [])
         }
     }
 
+    this.deleteStorage = function() {
+        if(storage.authToken != null)    
+            delete storage.authToken
+        if(sessStorage.authToken)
+            delete sessStorage.authToken;
+        if(sessStorage.token != null)
+            delete sessStorage.token;
+
+    }
+
     this.logout = function() {
         // invalidate existing token
         $http.get(apiURL+"/authed/tokenRefresh")
