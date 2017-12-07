@@ -4,8 +4,9 @@ app.controller('AdminWorkersCtrl', function($scope, $location, $mdDialog, $route
     $scope.selected = [];    
     $scope.minerStats = {};    
     $scope.workersOrder = 'hashRate';
+    $scope.workersOnline = "";
     $scope.options = {       
-        limit: 10,
+        limit: 30,
         page: 1
     };
 
@@ -21,7 +22,14 @@ app.controller('AdminWorkersCtrl', function($scope, $location, $mdDialog, $route
     });
 
 	$scope.promise = dataService.getData("/admin/userList", function(data) {
-        $scope.pool_workers = data;    
+        $scope.pool_workers = data;         
+        var cnt = 0;
+        _.each(data, function(addr, key) {
+            if(addr.hashRate > 0){
+                cnt = cnt + 1;
+            }
+        });
+        $scope.workersOnline = cnt + " online";
     });
 
     $scope.loadWorkers = function(){
